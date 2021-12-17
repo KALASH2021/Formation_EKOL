@@ -60,6 +60,17 @@ describe('controller', function () {
 
 	it('should show entries on start-up', function () {
 		// TODO: write test
+		var todo = {
+            id: 1,
+            title: 'Todo 1',
+            completed: false
+        };
+        setUpModel([todo]);
+
+        subject.setView('');
+
+        expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
+    
 	});
 
 	describe('routing', function () {
