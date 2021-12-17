@@ -269,7 +269,23 @@ describe('controller', function () {
 	describe('new todo', function () {
 		it('should add a new todo to the model', function () {
 			// TODO: write test
+		 ///////// view.js (175)////////
+			/*
+			if (event === 'newTodo') {
+			$on(self.$newTodo, 'change', function () {
+				handler(self.$newTodo.value);
+			});
+			*/
+            
+            setUpModel([]);
+            subject.setView('');
+            
+            view.trigger('newTodo', 'a new todo');
+            
+            // utilise l'espion "model.create" avec le 'a new todo' utilisant jasmine.any pour la comparaison booléenne
+            expect(model.create).toHaveBeenCalledWith('a new todo', jasmine.any(Function));
 		});
+
 
 		it('should add a new todo to the view', function () {
 			setUpModel([]);
