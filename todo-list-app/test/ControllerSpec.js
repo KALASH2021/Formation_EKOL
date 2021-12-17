@@ -183,6 +183,19 @@ describe('controller', function () {
 
 	it('should highlight "All" filter by default', function () {
 		// TODO: write test
+	  /*
+        ////////// view.js (47) ////////
+		View.prototype._setFilter = function (currentPage) {
+            qs('.filters .selected').className = '';
+            qs('.filters [href="#/' + currentPage + '"]').className = 'selected';
+            };
+		*/
+        var currentPage = '';
+        setUpModel([]);
+
+		subject.setView('');
+
+		expect(view.render).toHaveBeenCalledWith('setFilter', currentPage); // Configuration de l'environnement par défaut
 	});
 
 	it('should highlight "Active" filter when switching to active view', function () {
