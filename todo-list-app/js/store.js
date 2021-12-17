@@ -80,13 +80,13 @@
 
 		callback = callback || function () {};
 
-		// Generate an ID
+		/*// Generate an ID
 	    var newId = ""; 
 	    var charset = "0123456789";
 
         for (var i = 0; i < 6; i++) {
      		newId += charset.charAt(Math.floor(Math.random() * charset.length));
-		}
+		}*/
 
 		// If an ID was actually given, find the item and update each property
 		if (id) {
@@ -102,6 +102,46 @@
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, todos);
 		} else {
+
+			// Si aucun id n'est donné,on génére un new id pour la nouvelle tâche
+            var newId = "";
+            var charset = "0123456789";
+
+            // verification si déjà minimum un élément
+            if (todos.length > 0) {
+
+                // Si oui,  boucle afin de verif si new id n'est pas déjà utilisé
+                var idAlreadyUsed = true;
+
+                while (idAlreadyUsed === true) {
+
+                    // creation id
+                    for (var i = 0; i < 6; i++) {
+                        newId += charset.charAt(Math.floor(Math.random() * charset.length));
+                    }
+
+                    // utilisation ?
+                    for (var i = 0, len = todos.length; i < len; i++) {
+                        if (todos[i].id === newId) {
+                            // Yes
+                            idAlreadyUsed = true;
+                            break;
+                        } else {
+                            // No
+                            idAlreadyUsed = false;
+                        }
+                    }
+
+                }
+
+            } else {
+
+                // If there is no item, we create the ID
+                for (var i = 0; i < 6; i++) {
+                    newId += charset.charAt(Math.floor(Math.random() * charset.length));
+                }
+
+            }
 
     		// Assign an ID
 			updateData.id = parseInt(newId);
