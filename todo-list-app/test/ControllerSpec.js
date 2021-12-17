@@ -93,6 +93,27 @@ describe('controller', function () {
 
 		it('should show active entries', function () {
 			// TODO: write test
+
+		//////////  controller.js (74) ////////////
+            /*
+			Controller.prototype.showActive = function () {
+					var self = this;
+					self.model.read({ completed: false }, function (data) {
+						self.view.render('showEntries', data);
+					});
+				};
+			*/
+            var todo = {title: 'my todo', completed: false};
+            setUpModel([todo]);
+            
+            subject.setView('#/active'); // définition de la view > affichage elements actifs
+
+            expect(model.read).toHaveBeenCalledWith({completed: false}, jasmine.any(Function)); // appel métod model.read avec completed: false + prise en compte de la  fonction en param
+            
+            expect(view.render).toHaveBeenCalledWith('showEntries', [todo]); // métod render montre les entrées et le tabl. todo
+            
+            expect(todo.completed).toEqual(false); // La tâche completed doit tjs ê = à false
+            
 		});
 
 		it('should show completed entries', function () {
