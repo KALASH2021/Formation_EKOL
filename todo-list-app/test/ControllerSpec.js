@@ -118,8 +118,26 @@ describe('controller', function () {
 
 		it('should show completed entries', function () {
 			// TODO: write test
-		});
+		/*///////////  controller.js (86)/////////////
+		Controller.prototype.showCompleted = function () {
+			var self = this;
+			self.model.read({ completed: true }, function (data) {
+				self.view.render('showEntries', data);
+			});
+		};
+		*/
+		var todo = {title: 'my todo', completed: true};
+		setUpModel([todo]);
+		
+		subject.setView('#/completed'); // définition de la view for affichage  éléments complets
+		
+		expect(model.read).toHaveBeenCalledWith({completed: true}, jasmine.any(Function));
+		
+		expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
+		
+		expect(todo.completed).toEqual(true);
 	});
+});
 
 	it('should show the content block when todos exists', function () {
 		setUpModel([{title: 'my todo', completed: true}]);
