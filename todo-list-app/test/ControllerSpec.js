@@ -60,15 +60,13 @@ describe('controller', function () {
 
 	it('should show entries on start-up', function () {
 		// TODO: write test
-		var todo = {
-            id: 1,
-            title: 'Todo 1',
-            completed: false
-        };
-        setUpModel([todo]);
+		var todo = {}; // le todo est vide
+            
+        setUpModel([todo]);// install model
 
-        subject.setView('');
+        subject.setView(''); // definition de la view
 
+		// visibilite de la viex avec showEntries et tab vide
         expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
     
 	});
