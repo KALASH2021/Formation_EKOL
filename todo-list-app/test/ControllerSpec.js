@@ -184,7 +184,7 @@ describe('controller', function () {
 	it('should highlight "All" filter by default', function () {
 		// TODO: write test
 	  /*
-        ////////// view.js (47) ////////
+        ////////// view.js (43) ////////
 		View.prototype._setFilter = function (currentPage) {
             qs('.filters .selected').className = '';
             qs('.filters [href="#/' + currentPage + '"]').className = 'selected';
@@ -201,7 +201,7 @@ describe('controller', function () {
 	it('should highlight "Active" filter when switching to active view', function () {
 		// TODO: write test
 	 /*
-        ////////// view.js (47) ////////
+        ////////// view.js (43) ////////
 		View.prototype._setFilter = function (currentPage) {
             qs('.filters .selected').className = '';
             qs('.filters [href="#/' + currentPage + '"]').className = 'selected';
@@ -233,7 +233,7 @@ describe('controller', function () {
             
             subject.setView('');
             
-            // établit le toggleAll comme 'true'
+            // mise en place du toggleAll comme 'true'
             view.trigger('toggleAll', {completed: true});
             
             expect(model.update).toHaveBeenCalledWith(42, {completed: true}, jasmine.any(Function)); // completed besoin etre vrai
@@ -243,6 +243,26 @@ describe('controller', function () {
 
 		it('should update the view', function () {
 			// TODO: write test
+		 //////////view.js (48) /////////////
+            /*
+            View.prototype._elementComplete = function (id, completed) {
+            var listItem = qs('[data-id="' + id + '"]');
+            
+            if (!listItem) {
+                return;
+            }
+            listItem.className = completed ? 'completed' : '';
+            qs('input', listItem).checked = completed;
+            };
+            */
+            var todo = {id: 42, title: 'my todo', complete: false};
+            setUpModel([todo]);
+            
+            subject.setView('');
+            
+            view.trigger('toggleAll', {completed: true});
+            
+            expect(view.render).toHaveBeenCalledWith('elementComplete', {id: 42, completed: true});
 		});
 	});
 
