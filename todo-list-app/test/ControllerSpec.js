@@ -220,7 +220,26 @@ describe('controller', function () {
 	describe('toggle all', function () {
 		it('should toggle all todos to completed', function () {
 			// TODO: write test
+		 ////////// view.js (187) /////////////
+			/*
+			else if (event === 'toggleAll') {
+			$on(self.$toggleAll, 'click', function () {
+				handler({completed: this.checked});
+			});
+			*/
+            
+            var todo = {id: 42, title: 'my todo', complete: false};
+            setUpModel([todo]);
+            
+            subject.setView('');
+            
+            // établit le toggleAll comme 'true'
+            view.trigger('toggleAll', {completed: true});
+            
+            expect(model.update).toHaveBeenCalledWith(42, {completed: true}, jasmine.any(Function)); // completed besoin etre vrai
+            
 		});
+
 
 		it('should update the view', function () {
 			// TODO: write test
