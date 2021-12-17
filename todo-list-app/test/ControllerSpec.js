@@ -200,7 +200,22 @@ describe('controller', function () {
 
 	it('should highlight "Active" filter when switching to active view', function () {
 		// TODO: write test
+	 /*
+        ////////// view.js (47) ////////
+		View.prototype._setFilter = function (currentPage) {
+            qs('.filters .selected').className = '';
+            qs('.filters [href="#/' + currentPage + '"]').className = 'selected';
+			};
+		*/
+        var currentPage = 'active';
+        
+        setUpModel([]);
+
+		subject.setView('#/active');
+
+		expect(view.render).toHaveBeenCalledWith('setFilter', currentPage);
 	});
+
 
 	describe('toggle all', function () {
 		it('should toggle all todos to completed', function () {
