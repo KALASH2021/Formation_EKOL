@@ -58,14 +58,15 @@
 	 * });
 	 */
 	Template.prototype.show = function (data) {
-		var i, l;
+		/*var i, l;*/
 		var view = '';
 
-		for (i = 0, l = data.length; i < l; i++) {
-			var template = this.defaultTemplate;
-			var completed = '';
-			var checked = '';
-
+		/*for (i = 0, l = data.length; i < l; i++) {*/
+			
+			for (var i = 0, len = data.length; i < len; i++) {
+				var template = this.defaultTemplate;
+				var completed = '';
+				var checked = '';
 			if (data[i].completed) {
 				completed = 'completed';
 				checked = 'checked';
