@@ -325,7 +325,22 @@ describe('controller', function () {
 	describe('element removal', function () {
 		it('should remove an entry from the model', function () {
 			// TODO: write test
+		  ////////  view.js (201)/////////////
+			/*
+			else if (event === 'itemRemove') {
+			$delegate(self.$todoList, '.destroy', 'click', function () {
+				handler({id: self._itemId(this)});
+			});
+			*/
+            var todo = {id: 42, title: 'my todo', complete: true};
+            setUpModel([todo]);
+            
+            subject.setView('');
+            view.trigger('itemRemove', {id: 42});
+            
+            expect(model.remove).toHaveBeenCalledWith(42, jasmine.any(Function));
 		});
+
 
 		it('should remove an entry from the view', function () {
 			var todo = {id: 42, title: 'my todo', completed: true};
